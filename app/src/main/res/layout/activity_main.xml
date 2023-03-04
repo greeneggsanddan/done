@@ -14,8 +14,7 @@
         android:fontFamily="@font/inter_bold"
         android:text="Tasks"
         android:textColor="@android:color/black"
-        android:textSize="32sp"
-        android:textStyle="bold" />
+        android:textSize="32sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tasksRecyclerView"
