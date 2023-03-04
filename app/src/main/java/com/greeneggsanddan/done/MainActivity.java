@@ -7,21 +7,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.os.FileUtils;
 import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.greeneggsanddan.done.Adapter.ToDoAdapter;
 import com.greeneggsanddan.done.Model.ToDoModel;
 import com.greeneggsanddan.done.Utils.DatabaseHandler;
+import com.greeneggsanddan.done.Utils.RecyclerViewMargin;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements DialogCloseListener{
+public class MainActivity extends AppCompatActivity implements DialogCloseListener {
 
     private RecyclerView tasksRecyclerView;
     private ToDoAdapter tasksAdapter;
@@ -43,6 +41,9 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
         tasksRecyclerView = findViewById(R.id.tasksRecyclerView);
         tasksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        RecyclerViewMargin itemDecorator = new RecyclerViewMargin(-40);
+        tasksRecyclerView.addItemDecoration(itemDecorator);
+
         tasksAdapter = new ToDoAdapter(db, this);
         tasksRecyclerView.setAdapter(tasksAdapter);
 
