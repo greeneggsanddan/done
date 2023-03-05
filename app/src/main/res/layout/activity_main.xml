@@ -24,8 +24,8 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:nestedScrollingEnabled="true" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+    <ImageButton
+        android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -34,8 +34,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
-        android:backgroundTint="@android:color/black"
-        android:src="@drawable/baseline_add"
-        app:tint="@color/white" />
+        app:srcCompat="@drawable/outline_add"
+        android:background="@android:color/white" />
 
 </RelativeLayout>

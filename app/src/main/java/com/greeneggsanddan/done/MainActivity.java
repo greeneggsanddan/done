@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.greeneggsanddan.done.Adapter.ToDoAdapter;
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
     private RecyclerView tasksRecyclerView;
     private ToDoAdapter tasksAdapter;
-    private FloatingActionButton fab;
+    private ImageButton addButton;
 
     private List<ToDoModel>taskList;
     private DatabaseHandler db;
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         tasksAdapter = new ToDoAdapter(db, this);
         tasksRecyclerView.setAdapter(tasksAdapter);
 
-        fab = findViewById(R.id.fab);
+        addButton = findViewById(R.id.addButton);
 
         ItemTouchHelper itemTouchHelper =  new ItemTouchHelper(new RecyclerItemTouchHelper(tasksAdapter));
         itemTouchHelper.attachToRecyclerView(tasksRecyclerView);
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         Collections.reverse(taskList);
         tasksAdapter.setTasks(taskList);
 
-        fab.setOnClickListener(new View.OnClickListener() {
+        addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AddNewTask.newInstance().show(getSupportFragmentManager(), AddNewTask.TAG);
