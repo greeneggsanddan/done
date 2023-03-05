@@ -2,6 +2,7 @@ package com.greeneggsanddan.done;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -54,7 +55,7 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
             icon = ContextCompat.getDrawable(adapter.getContext(), R.drawable.outline_edit);
         }
 
-        int iconMargin = (itemView.getHeight() - icon.getIntrinsicHeight()) /2;
+        int iconMargin = 20 * Math.round(Resources.getSystem().getDisplayMetrics().density);
         int iconTop = itemView.getTop() + (itemView.getHeight() - icon.getIntrinsicHeight()) /2;
         int iconBottom = iconTop + icon.getIntrinsicHeight();
 
