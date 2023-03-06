@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     private RecyclerView tasksRecyclerView;
     private ToDoAdapter tasksAdapter;
     private ImageButton addButton;
+    private ImageButton toTaskButton;
 
     private List<ToDoModel>taskList;
     private DatabaseHandler db;
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         tasksRecyclerView.setAdapter(tasksAdapter);
 
         addButton = findViewById(R.id.addButton);
+        toTaskButton = findViewById(R.id.toTaskButton);
 
         ItemTouchHelper itemTouchHelper =  new ItemTouchHelper(new RecyclerItemTouchHelper(tasksAdapter));
         itemTouchHelper.attachToRecyclerView(tasksRecyclerView);
@@ -60,6 +63,14 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
             @Override
             public void onClick(View v) {
                 AddNewTask.newInstance().show(getSupportFragmentManager(), AddNewTask.TAG);
+            }
+        });
+
+        toTaskButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myInt = new Intent(getApplicationContext(), TaskActivity.class);
+                startActivity(myInt);
             }
         });
     }
