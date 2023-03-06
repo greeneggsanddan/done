@@ -1,7 +1,7 @@
 package com.greeneggsanddan.done.Model;
 
 public class ToDoModel {
-    private int id, status;
+    private int id;
     private String task;
 
     public int getId() {

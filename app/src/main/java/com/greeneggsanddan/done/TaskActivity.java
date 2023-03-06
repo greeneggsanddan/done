@@ -2,13 +2,13 @@ package com.greeneggsanddan.done;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-import com.greeneggsanddan.done.Adapter.ToDoAdapter;
+import com.greeneggsanddan.done.Adapter.SwipeAdapter;
 import com.greeneggsanddan.done.Model.ToDoModel;
 import com.greeneggsanddan.done.Utils.DatabaseHandler;
 import com.yalantis.library.Koloda;
@@ -16,12 +16,10 @@ import com.yalantis.library.Koloda;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TaskActivity extends AppCompatActivity {
+public class TaskActivity extends AppCompatActivity implements DialogCloseListener {
 
     private SwipeAdapter adapter;
-    private List<ToDoModel>taskList;
     private DatabaseHandler db;
-    private List<Integer> list;
     private Koloda koloda;
     private ImageButton toMenuButton;
     private ImageButton addButton;
@@ -35,17 +33,13 @@ public class TaskActivity extends AppCompatActivity {
         db = new DatabaseHandler(this);
         db.openDatabase();
 
-        taskList = new ArrayList<>();
-
         koloda = findViewById(R.id.koloda);
-        list = new ArrayList<>();
-        adapter = new SwipeAdapter(this, list);
+        adapter = new SwipeAdapter(this, db);
         koloda.setAdapter(adapter);
-
-        //do something to display current task
 
         toMenuButton = findViewById(R.id.toMenuButton);
         addButton = findViewById(R.id.addButton);
+
 
         toMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,5 +48,19 @@ public class TaskActivity extends AppCompatActivity {
                 startActivity(myInt);
             }
         });
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddNewTask.newInstance().show(getSupportFragmentManager(), AddNewTask.TAG);
+            }
+        });
     }
+
+//    @Override
+//    public void handleDialogClose(DialogInterface dialog) {
+//        taskList = db.getAllTasks();
+//        tasksAdapter.setTasks(taskList);
+//        tasksAdapter.notifyDataSetChanged();
+//    }
 }

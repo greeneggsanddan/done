@@ -7,8 +7,8 @@
     <com.yalantis.library.Koloda
         android:id="@+id/koloda"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="96dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="120dp"
         app:koloda_card_layout="@layout/item_koloda" />
 
     <ImageButton

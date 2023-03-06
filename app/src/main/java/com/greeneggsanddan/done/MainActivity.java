@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     private ImageButton addButton;
     private ImageButton toTaskButton;
 
-    private List<ToDoModel>taskList;
+    private List<ToDoModel> taskList;
     private DatabaseHandler db;
 
     @Override
