@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import androidx.cardview.widget.CardView;
-
 import com.greeneggsanddan.done.Model.ToDoModel;
 import com.greeneggsanddan.done.R;
 import com.greeneggsanddan.done.Utils.DatabaseHandler;

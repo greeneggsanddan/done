@@ -4,12 +4,11 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto" >
 
-    <com.yalantis.library.Koloda
-        android:id="@+id/koloda"
+    <com.yuyakaido.android.cardstackview.CardStackView
+        android:id="@+id/card_stack_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="120dp"
-        app:koloda_card_layout="@layout/item_koloda" />
+        android:layout_marginBottom="120dp" />
 
     <ImageButton
         android:id="@+id/addButton"
