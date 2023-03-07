@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageButton;
 
-import com.greeneggsanddan.done.Adapter.SwipeAdapter;
 import com.greeneggsanddan.done.Adapter.ToDoAdapter;
 import com.greeneggsanddan.done.Model.ToDoModel;
 import com.greeneggsanddan.done.Utils.DatabaseHandler;
@@ -24,9 +23,8 @@ import com.yuyakaido.android.cardstackview.SwipeableMethod;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TaskActivity extends AppCompatActivity {
+public class TaskActivity extends AppCompatActivity implements DialogCloseListener {
 
-    private static final String TAG = "TaskActivity";
     private CardStackAdapter adapter;
     private DatabaseHandler db;
     private CardStackLayoutManager manager;
@@ -107,10 +105,10 @@ public class TaskActivity extends AppCompatActivity {
         });
     }
 
-//    @Override
-//    public void handleDialogClose(DialogInterface dialog) {
-//        taskList = db.getAllTasks();
-//        tasksAdapter.setTasks(taskList);
-//        tasksAdapter.notifyDataSetChanged();
-//    }
+    @Override
+    public void handleDialogClose(DialogInterface dialog) {
+        taskList = db.getAllTasks();
+        adapter.setTasks(taskList);
+        adapter.notifyDataSetChanged();
+    }
 }

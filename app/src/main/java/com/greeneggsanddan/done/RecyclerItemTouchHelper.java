@@ -55,7 +55,7 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
             icon = ContextCompat.getDrawable(adapter.getContext(), R.drawable.outline_edit);
         }
 
-        int iconMargin = 20 * Math.round(Resources.getSystem().getDisplayMetrics().density);
+        int iconMargin = 32 * Math.round(Resources.getSystem().getDisplayMetrics().density); //sets margin in dp
         int iconTop = itemView.getTop() + (itemView.getHeight() - icon.getIntrinsicHeight()) /2;
         int iconBottom = iconTop + icon.getIntrinsicHeight();
 
