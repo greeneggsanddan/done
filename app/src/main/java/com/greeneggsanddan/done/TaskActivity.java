@@ -53,7 +53,10 @@ public class TaskActivity extends AppCompatActivity implements DialogCloseListen
 
             @Override
             public void onCardSwiped(Direction direction) {
-
+                final int position = manager.getTopPosition() - 1;
+                if (direction == Direction.Right) {
+                    adapter.deleteItem(position);
+                }
             }
 
             @Override
