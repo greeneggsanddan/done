@@ -7,17 +7,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
 import android.widget.ImageButton;
 
-import com.greeneggsanddan.done.Adapter.ToDoAdapter;
+import com.greeneggsanddan.done.Adapter.CardStackAdapter;
 import com.greeneggsanddan.done.Model.ToDoModel;
 import com.greeneggsanddan.done.Utils.DatabaseHandler;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
 import com.yuyakaido.android.cardstackview.CardStackListener;
 import com.yuyakaido.android.cardstackview.CardStackView;
 import com.yuyakaido.android.cardstackview.Direction;
-import com.yuyakaido.android.cardstackview.StackFrom;
 import com.yuyakaido.android.cardstackview.SwipeableMethod;
 
 import java.util.ArrayList;

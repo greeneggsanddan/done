@@ -1,4 +1,4 @@
-package com.greeneggsanddan.done;
+package com.greeneggsanddan.done.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,10 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.greeneggsanddan.done.Model.ToDoModel;
+import com.greeneggsanddan.done.R;
+import com.greeneggsanddan.done.TaskActivity;
 import com.greeneggsanddan.done.Utils.DatabaseHandler;
 
 import java.util.List;

@@ -24,7 +24,6 @@ import com.greeneggsanddan.done.Utils.DatabaseHandler;
 public class AddNewTask extends BottomSheetDialogFragment {
 
     public static final String TAG = "ActionBottomDialog";
-
     private EditText newTaskText;
     private Button newTaskSaveButton;
     private DatabaseHandler db;
@@ -43,6 +42,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.new_task, container, false);
         getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE); //Allows the BottomSheetDialogFragment to readjust and move upwards when typing
+
         return view;
     }
 
@@ -51,6 +51,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
         super.onViewCreated(view, savedInstanceState);
         newTaskText = getView().findViewById(R.id.newTaskText);
         newTaskSaveButton = getView().findViewById(R.id.newTaskButton);
+        newTaskText.requestFocus();
 
         db = new DatabaseHandler(getActivity());
         db.openDatabase();
