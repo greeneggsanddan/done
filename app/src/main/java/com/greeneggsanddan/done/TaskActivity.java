@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageButton;
 
 import com.greeneggsanddan.done.Adapter.CardStackAdapter;
@@ -78,7 +79,7 @@ public class TaskActivity extends AppCompatActivity implements DialogCloseListen
             }
         });
         manager.setVisibleCount(2);
-        manager.setScaleInterval(1f);
+        manager.setScaleInterval(.95f);
         adapter = new CardStackAdapter(db, this);
         cardStackView.setLayoutManager(manager);
         cardStackView.setAdapter(adapter);

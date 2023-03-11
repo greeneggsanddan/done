@@ -1,19 +1,17 @@
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:cardElevation="4dp"
-    app:cardMaxElevation="6dp"
-    app:cardCornerRadius="0dp" >
+    app:cardCornerRadius="0dp"
+    app:cardElevation="0dp" >
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
         android:paddingTop="0dp"
-        android:paddingBottom="0dp"
-        android:layout_gravity="center_vertical" >
+        android:paddingBottom="0dp">
 
         <TextView
             android:id="@+id/currentTaskText"
@@ -27,5 +25,19 @@
             tool:text="The quick brown fox jumps over the lazy dog" />
 
     </RelativeLayout>
+
+<!--    <FrameLayout-->
+<!--        android:id="@+id/left_overlay"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:background="@drawable/overlay_black">-->
+<!--    </FrameLayout>-->
+
+<!--    <FrameLayout-->
+<!--        android:id="@+id/right_overlay"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:background="@drawable/overlay_black">-->
+<!--    </FrameLayout>-->
 
 </androidx.cardview.widget.CardView>
