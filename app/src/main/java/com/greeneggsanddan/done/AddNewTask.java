@@ -8,6 +8,7 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +56,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
         newTaskText = getView().findViewById(R.id.newTaskText);
         newTaskSaveButton = getView().findViewById(R.id.newTaskButton);
         newTaskText.requestFocus();
+        newTaskSaveButton.setEnabled(false);
 
         db = new DatabaseHandler(getActivity());
         db.openDatabase();
@@ -69,7 +71,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
         newTaskText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                newTaskSaveButton.setEnabled(false);
+
             }
 
             @Override
@@ -102,6 +104,25 @@ public class AddNewTask extends BottomSheetDialogFragment {
                     db.insertTask(task);
                 }
                 dismiss();
+            }
+        });
+
+        newTaskText.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                    String text = newTaskText.getText().toString();
+                    if(finalIsUpdate) {
+                        db.updateTask(bundle.getInt("id"), text);
+                    } else {
+                        ToDoModel task = new ToDoModel();
+                        task.setTask(text);
+                        db.insertTask(task);
+                    }
+                    dismiss();
+                    return true;
+                }
+                return false;
             }
         });
     }
