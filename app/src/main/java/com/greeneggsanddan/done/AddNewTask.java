@@ -13,9 +13,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -92,6 +94,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
         });
 
         boolean finalIsUpdate = isUpdate;
+
         newTaskSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,10 +110,11 @@ public class AddNewTask extends BottomSheetDialogFragment {
             }
         });
 
-        newTaskText.setOnKeyListener(new View.OnKeyListener() {
+        newTaskText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if(event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                //Sets the "Enter" key and software "Enter" button to insert the task
+                if(actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_NULL) {
                     String text = newTaskText.getText().toString();
                     if(finalIsUpdate) {
                         db.updateTask(bundle.getInt("id"), text);

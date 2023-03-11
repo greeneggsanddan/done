@@ -17,6 +17,7 @@
         android:textSize="20sp"
         android:singleLine="true"
         android:maxLength="100"
+        android:imeOptions="actionDone"
         android:hint="Add a task"/>
 
     <ImageButton
