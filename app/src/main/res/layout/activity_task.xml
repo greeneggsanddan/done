@@ -10,6 +10,18 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="120dp" />
 
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_marginBottom="120dp"-->
+<!--        android:layout_below="@id/card_stack_view"-->
+<!--        android:fontFamily="@font/inter_bold"-->
+<!--        android:paddingStart="32dp"-->
+<!--        android:paddingEnd="32dp"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="48sp"-->
+<!--        android:text="@string/last_card" />-->
+
     <ImageButton
         android:id="@+id/addButton"
         android:layout_width="wrap_content"

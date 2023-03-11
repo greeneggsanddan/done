@@ -77,8 +77,7 @@ public class TaskActivity extends AppCompatActivity implements DialogCloseListen
 
             }
         });
-        manager.setVisibleCount(1);
-        manager.setSwipeableMethod(SwipeableMethod.Manual);
+        manager.setVisibleCount(2);
         adapter = new CardStackAdapter(db, this);
         cardStackView.setLayoutManager(manager);
         cardStackView.setAdapter(adapter);
