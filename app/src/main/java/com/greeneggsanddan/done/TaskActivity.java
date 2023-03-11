@@ -78,11 +78,11 @@ public class TaskActivity extends AppCompatActivity implements DialogCloseListen
             }
         });
         manager.setVisibleCount(2);
+        manager.setScaleInterval(1f);
         adapter = new CardStackAdapter(db, this);
         cardStackView.setLayoutManager(manager);
         cardStackView.setAdapter(adapter);
         cardStackView.setItemAnimator(new DefaultItemAnimator());
-
         toMenuButton = findViewById(R.id.toMenuButton);
         addButton = findViewById(R.id.addButton);
 
