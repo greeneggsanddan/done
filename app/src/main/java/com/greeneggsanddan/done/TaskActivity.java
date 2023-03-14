@@ -70,7 +70,9 @@ public class TaskActivity extends AppCompatActivity implements DialogCloseListen
 
             @Override
             public void onCardAppeared(View view, int position) {
-
+                if (adapter.getItemCount()==1) {
+                    manager.setSwipeableMethod(SwipeableMethod.None);
+                }
             }
 
             @Override
@@ -102,6 +104,7 @@ public class TaskActivity extends AppCompatActivity implements DialogCloseListen
             @Override
             public void onClick(View v) {
                 AddNewTask.newInstance().show(getSupportFragmentManager(), AddNewTask.TAG);
+                manager.setSwipeableMethod(SwipeableMethod.Manual);
             }
         });
     }
