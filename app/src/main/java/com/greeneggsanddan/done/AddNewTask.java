@@ -78,9 +78,10 @@ public class AddNewTask extends BottomSheetDialogFragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.toString().equals("")) { //disables save button if no text entered
+                if(s.toString().trim().equals("")) { //disables save button if no text or only spaces entered
                     newTaskSaveButton.setEnabled(false);
                     newTaskSaveButton.setColorFilter(ContextCompat.getColor(getContext(), R.color.gray), PorterDuff.Mode.SRC_IN);
+//                    newTaskText.setImeOptions(EditorInfo.IME_ACTION_NONE);
                 } else {
                     newTaskSaveButton.setEnabled(true);
                     newTaskSaveButton.setColorFilter(ContextCompat.getColor(getContext(), R.color.black), PorterDuff.Mode.SRC_IN);
@@ -116,15 +117,20 @@ public class AddNewTask extends BottomSheetDialogFragment {
                 //Sets the "Enter" key and software "Enter" button to insert the task
                 if(actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_NULL) {
                     String text = newTaskText.getText().toString();
-                    if(finalIsUpdate) {
-                        db.updateTask(bundle.getInt("id"), text);
+                    if (!text.trim().equals("")) {
+                        if(finalIsUpdate) {
+                            db.updateTask(bundle.getInt("id"), text);
+                        } else {
+                            ToDoModel task = new ToDoModel();
+                            task.setTask(text);
+                            db.insertTask(task);
+                        }
+                        dismiss();
+                        return true;
                     } else {
-                        ToDoModel task = new ToDoModel();
-                        task.setTask(text);
-                        db.insertTask(task);
+                        dismiss();
+                        return false;
                     }
-                    dismiss();
-                    return true;
                 }
                 return false;
             }
