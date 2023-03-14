@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         itemTouchHelper.attachToRecyclerView(tasksRecyclerView);
 
         taskList = db.getAllTasks();
+        taskList.remove(taskList.size()-1); //removes final card
         tasksAdapter.setTasks(taskList);
 
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     @Override
     public void handleDialogClose(DialogInterface dialog) {
         taskList = db.getAllTasks();
+        taskList.remove(taskList.size()-1); //removes final card
         tasksAdapter.setTasks(taskList);
         tasksAdapter.notifyDataSetChanged();
     }
