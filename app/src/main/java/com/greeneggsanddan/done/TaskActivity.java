@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -100,7 +101,7 @@ public class TaskActivity extends AppCompatActivity implements DialogCloseListen
         toMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myInt = new Intent(getApplicationContext(), MainActivity.class);
+                Intent myInt = new Intent(getApplicationContext(), ListActivity.class);
                 startActivity(myInt);
             }
         });

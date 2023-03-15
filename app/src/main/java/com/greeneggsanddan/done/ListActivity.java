@@ -11,17 +11,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.greeneggsanddan.done.Adapter.ToDoAdapter;
 import com.greeneggsanddan.done.Model.ToDoModel;
 import com.greeneggsanddan.done.Utils.DatabaseHandler;
 import com.greeneggsanddan.done.Utils.RecyclerViewMargin;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements DialogCloseListener {
+public class ListActivity extends AppCompatActivity implements DialogCloseListener {
 
     private RecyclerView tasksRecyclerView;
     private ToDoAdapter tasksAdapter;
@@ -34,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_list);
         getSupportActionBar().hide();
 
         db = new DatabaseHandler(this);

@@ -1,5 +1,6 @@
 package com.greeneggsanddan.done.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,7 +11,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.greeneggsanddan.done.AddNewTask;
-import com.greeneggsanddan.done.MainActivity;
+import com.greeneggsanddan.done.ListActivity;
 import com.greeneggsanddan.done.Model.ToDoModel;
 import com.greeneggsanddan.done.R;
 import com.greeneggsanddan.done.Utils.DatabaseHandler;
@@ -20,10 +21,10 @@ import java.util.List;
 public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
 
     private List<ToDoModel> todoList;
-    private MainActivity activity; //you need to change this when you switch main activities
+    private ListActivity activity;
     private DatabaseHandler db;
 
-    public ToDoAdapter(DatabaseHandler db, MainActivity activity) {
+    public ToDoAdapter(DatabaseHandler db, ListActivity activity) {
         this.db = db;
         this.activity = activity;
     }
