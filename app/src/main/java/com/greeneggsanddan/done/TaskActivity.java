@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.greeneggsanddan.done.Adapter.CardStackAdapter;
 import com.greeneggsanddan.done.Model.ToDoModel;
@@ -32,6 +34,7 @@ public class TaskActivity extends AppCompatActivity implements DialogCloseListen
     private List<ToDoModel> taskList;
     private ImageButton toMenuButton;
     private ImageButton addButton;
+    private List<ToDoModel> previousTaskList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +94,7 @@ public class TaskActivity extends AppCompatActivity implements DialogCloseListen
         addButton = findViewById(R.id.addButton);
 
         taskList = db.getAllTasks();
+        previousTaskList = taskList;
         adapter.setTasks(taskList);
 
         toMenuButton.setOnClickListener(new View.OnClickListener() {
@@ -115,5 +119,10 @@ public class TaskActivity extends AppCompatActivity implements DialogCloseListen
         taskList = db.getAllTasks();
         adapter.setTasks(taskList);
         adapter.notifyDataSetChanged();
+        if (taskList.size() != previousTaskList.size()) { //Checks to see if a task was added. This will need to be updated for re-ordered tasks and back button activity
+            Toast.makeText(TaskActivity.this, "Task added", Toast.LENGTH_SHORT).show();
+            previousTaskList = taskList;
+        }
     }
+
 }

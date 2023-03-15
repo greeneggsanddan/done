@@ -76,7 +76,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             assert cur != null;
             cur.close();
         }
-        ToDoModel finalTask = new ToDoModel(); //creates the "You're d.one" card at the end of the CardStack
+        ToDoModel finalTask = new ToDoModel(); //creates the "You are d.one" card at the end of the CardStack
         finalTask.setId(taskList.size()+1);
         finalTask.setTask("You are d.one");
         taskList.add(finalTask);
