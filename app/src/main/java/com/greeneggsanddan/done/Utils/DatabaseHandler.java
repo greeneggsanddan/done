@@ -83,6 +83,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return taskList;
     }
 
+    public void updateItemOrder(List<ToDoModel> todoList) { //deletes the whole table and makes a new one
+        db.execSQL("delete from " + TODO_TABLE);
+        for (ToDoModel task : todoList) {
+            ContentValues cv = new ContentValues();
+            cv.put(TASK, task.getTask());
+            db.insert(TODO_TABLE, null, cv);
+        }
+    }
+
     public void updateTask(int id, String task) {
         ContentValues cv = new ContentValues();
         cv.put(TASK, task);

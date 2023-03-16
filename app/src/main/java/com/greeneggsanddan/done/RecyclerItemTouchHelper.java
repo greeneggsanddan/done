@@ -7,35 +7,53 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.greeneggsanddan.done.Adapter.ToDoAdapter;
 
-public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
+import java.util.Collections;
+
+public class RecyclerItemTouchHelper extends ItemTouchHelper.Callback {
 
     private ToDoAdapter adapter;
+    private int draggedItemIndex;
 
     public RecyclerItemTouchHelper(ToDoAdapter adapter) {
-        super( 0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         this.adapter = adapter;
     }
 
     @Override
+    public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+        return makeMovementFlags(
+                ItemTouchHelper.UP | ItemTouchHelper.DOWN,
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT
+        );
+    }
+
+    @Override
     public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+        draggedItemIndex = viewHolder.getAdapterPosition();
+        int targetIndex = target.getAdapterPosition();
+        adapter.swapItems(draggedItemIndex, targetIndex);
         return false;
     }
 
     @Override
     public void onSwiped(final RecyclerView.ViewHolder viewHolder, int direction) {
         final int position = viewHolder.getAdapterPosition();
-        if (direction == ItemTouchHelper.RIGHT) {
-            adapter.deleteItem(position);
-        } else {
-            adapter.editItem(position);
+        switch (direction) {
+            case ItemTouchHelper.RIGHT:
+                adapter.deleteItem(position);
+                break;
+            case ItemTouchHelper.LEFT:
+                adapter.editItem(position);
+                break;
         }
     }
     @Override

@@ -3,6 +3,7 @@ package com.greeneggsanddan.done.Adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.greeneggsanddan.done.Model.ToDoModel;
 import com.greeneggsanddan.done.R;
 import com.greeneggsanddan.done.Utils.DatabaseHandler;
 
+import java.util.Collections;
 import java.util.List;
 
 public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
@@ -73,6 +75,11 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         AddNewTask fragment = new AddNewTask();
         fragment.setArguments(bundle);
         fragment.show(activity.getSupportFragmentManager(), AddNewTask.TAG);
+    }
+
+    public void swapItems(int draggedItemIndex, int targetIndex) {
+        Collections.swap(todoList, draggedItemIndex, targetIndex);
+        notifyItemMoved(draggedItemIndex, targetIndex);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

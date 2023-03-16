@@ -82,4 +82,15 @@ public class ListActivity extends AppCompatActivity implements DialogCloseListen
         tasksAdapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void onDestroy() {
+        db.updateItemOrder(taskList);
+        super.onDestroy();
+    }
+
+    @Override
+    public void onPause() {
+        db.updateItemOrder(taskList);
+        super.onPause();
+    }
 }
