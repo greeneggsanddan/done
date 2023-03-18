@@ -22,7 +22,7 @@ import java.util.Collections;
 public class RecyclerItemTouchHelper extends ItemTouchHelper.Callback {
 
     private ToDoAdapter adapter;
-    private int draggedItemIndex;
+    private boolean isItemMoved = false;
 
     public RecyclerItemTouchHelper(ToDoAdapter adapter) {
         this.adapter = adapter;
@@ -38,10 +38,21 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.Callback {
 
     @Override
     public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-        draggedItemIndex = viewHolder.getAdapterPosition();
-        int targetIndex = target.getAdapterPosition();
-        adapter.swapItems(draggedItemIndex, targetIndex);
-        return false;
+        isItemMoved = true;
+        return true;
+    }
+
+    @Override
+    public void onMoved(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, int fromPos, RecyclerView.ViewHolder target, int toPos, int x, int y) {
+        adapter.swapItems(fromPos, toPos);
+    }
+
+    @Override
+    public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
+        if (actionState == ItemTouchHelper.ACTION_STATE_IDLE && isItemMoved) {
+            adapter.updateItems();
+            isItemMoved = false;
+        }
     }
 
     @Override
@@ -51,10 +62,11 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.Callback {
             case ItemTouchHelper.RIGHT:
                 adapter.deleteItem(position);
                 break;
-            case ItemTouchHelper.LEFT:
-                adapter.editItem(position);
-                break;
+//            case ItemTouchHelper.LEFT: //Removing editItem functionality
+//                adapter.editItem(position);
+//                break;
         }
+        isItemMoved = false;
     }
     @Override
     public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
@@ -83,13 +95,13 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.Callback {
             icon.setBounds(iconLeft, iconTop, iconRight, iconBottom);
 
             background.setBounds(itemView.getLeft(), itemView.getTop(), itemView.getLeft() + ((int)dX) +backgroundCornerOffset, itemView.getBottom());
-        } else if (dX < 0) { // Swiping to the left
-            int iconLeft = itemView.getRight() - iconMargin - icon.getIntrinsicWidth();
-            int iconRight = itemView.getRight() - iconMargin;
-            icon.setBounds(iconLeft, iconTop, iconRight, iconBottom);
-
-            background.setBounds(itemView.getRight() + ((int) dX) - backgroundCornerOffset,
-                    itemView.getTop(), itemView.getRight(), itemView.getBottom());
+//        } else if (dX < 0) { // Swiping to the left //removed editItem functionality
+//            int iconLeft = itemView.getRight() - iconMargin - icon.getIntrinsicWidth();
+//            int iconRight = itemView.getRight() - iconMargin;
+//            icon.setBounds(iconLeft, iconTop, iconRight, iconBottom);
+//
+//            background.setBounds(itemView.getRight() + ((int) dX) - backgroundCornerOffset,
+//                    itemView.getTop(), itemView.getRight(), itemView.getBottom());
         } else { // view is unSwiped
             background.setBounds(0, 0, 0, 0);
         }

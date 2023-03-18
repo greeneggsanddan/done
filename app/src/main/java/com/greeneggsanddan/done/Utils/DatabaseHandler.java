@@ -76,14 +76,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             assert cur != null;
             cur.close();
         }
-        ToDoModel finalTask = new ToDoModel(); //creates the "You are d.one" card at the end of the CardStack
-        finalTask.setId(taskList.size()+1);
-        finalTask.setTask("You are d.one");
-        taskList.add(finalTask);
         return taskList;
     }
 
-    public void updateItemOrder(List<ToDoModel> todoList) { //deletes the whole table and makes a new one
+    public void updateDatabase(List<ToDoModel> todoList) { //deletes the whole table and makes a new one
         db.execSQL("delete from " + TODO_TABLE);
         for (ToDoModel task : todoList) {
             ContentValues cv = new ContentValues();
@@ -92,11 +88,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
     }
 
-    public void updateTask(int id, String task) {
-        ContentValues cv = new ContentValues();
-        cv.put(TASK, task);
-        db.update(TODO_TABLE, cv, ID + "= ?", new String[] {String.valueOf(id)});
-    }
+//    public void updateTask(int id, String task) { //The id of the updated task changes on re-ordering
+//        ContentValues cv = new ContentValues();
+//        cv.put(TASK, task);
+//        db.update(TODO_TABLE, cv, ID + "= ?", new String[] {String.valueOf(id)});
+//    }
 
     public void deleteTask(int id){
         db.delete(TODO_TABLE, ID + "= ?", new String[] {String.valueOf(id)});

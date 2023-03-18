@@ -95,6 +95,7 @@ public class TaskActivity extends AppCompatActivity implements DialogCloseListen
         addButton = findViewById(R.id.addButton);
 
         taskList = db.getAllTasks();
+        addLastTask(taskList);
         previousTaskList = taskList;
         adapter.setTasks(taskList);
 
@@ -114,10 +115,16 @@ public class TaskActivity extends AppCompatActivity implements DialogCloseListen
             }
         });
     }
+    private void addLastTask (List<ToDoModel> todoList) { //creates the "You are d.one" card at the end of the CardStack
+        ToDoModel lastTask = new ToDoModel();
+        lastTask.setTask("You are d.one");
+        todoList.add(lastTask);
+    }
 
     @Override
     public void handleDialogClose(DialogInterface dialog) {
         taskList = db.getAllTasks();
+        addLastTask(taskList);
         adapter.setTasks(taskList);
         adapter.notifyDataSetChanged();
         if (taskList.size() != previousTaskList.size()) { //Checks to see if a task was added. This will need to be updated for re-ordered tasks and back button activity
@@ -125,5 +132,23 @@ public class TaskActivity extends AppCompatActivity implements DialogCloseListen
             previousTaskList = taskList;
         }
     }
+
+//    @Override
+//    public void onDestroy() { //Adds the final card to the database when you don't want it to
+//        db.updateDatabase(taskList);
+//        super.onDestroy();
+//    }
+//
+//    @Override
+//    public void onPause() {
+//        db.updateDatabase(taskList);
+//        super.onPause();
+//    }
+
+//    @Override
+//    public void onResume() {
+//        db.updateDatabase(taskList);
+//        super.onResume();
+//    }
 
 }

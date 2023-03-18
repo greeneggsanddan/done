@@ -67,19 +67,24 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         notifyItemRemoved(position);
     }
 
-    public void editItem(int position) {
-        ToDoModel item = todoList.get(position);
-        Bundle bundle =new Bundle();
-        bundle.putInt("id", item.getId());
-        bundle.putString("task", item.getTask());
-        AddNewTask fragment = new AddNewTask();
-        fragment.setArguments(bundle);
-        fragment.show(activity.getSupportFragmentManager(), AddNewTask.TAG);
-    }
+//    public void editItem(int position) { //Removing editItem functionality
+//        ToDoModel item = todoList.get(position);
+//        Bundle bundle =new Bundle();
+//        bundle.putInt("id", item.getId());
+//        bundle.putString("task", item.getTask());
+//        AddNewTask fragment = new AddNewTask();
+//        fragment.setArguments(bundle);
+//        fragment.show(activity.getSupportFragmentManager(), AddNewTask.TAG);
+//    }
 
     public void swapItems(int draggedItemIndex, int targetIndex) {
         Collections.swap(todoList, draggedItemIndex, targetIndex);
         notifyItemMoved(draggedItemIndex, targetIndex);
+    }
+
+    public void updateItems() {
+        db.updateDatabase(todoList);
+        todoList = db.getAllTasks();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

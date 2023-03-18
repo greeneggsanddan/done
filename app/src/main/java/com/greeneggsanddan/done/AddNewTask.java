@@ -82,7 +82,6 @@ public class AddNewTask extends BottomSheetDialogFragment {
                 if(s.toString().trim().equals("")) { //disables save button if no text or only spaces entered
                     newTaskSaveButton.setEnabled(false);
                     newTaskSaveButton.setColorFilter(ContextCompat.getColor(getContext(), R.color.gray), PorterDuff.Mode.SRC_IN);
-//                    newTaskText.setImeOptions(EditorInfo.IME_ACTION_NONE);
                 } else {
                     newTaskSaveButton.setEnabled(true);
                     newTaskSaveButton.setColorFilter(ContextCompat.getColor(getContext(), R.color.black), PorterDuff.Mode.SRC_IN);
@@ -102,7 +101,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
             public void onClick(View v) {
                 String text = newTaskText.getText().toString();
                 if(finalIsUpdate) {
-                    db.updateTask(bundle.getInt("id"), text);
+//                    db.updateTask(bundle.getInt("id"), text);
                 } else {
                     ToDoModel task = new ToDoModel();
                     task.setTask(text);
@@ -120,7 +119,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
                     String text = newTaskText.getText().toString();
                     if (!text.trim().equals("")) {
                         if(finalIsUpdate) {
-                            db.updateTask(bundle.getInt("id"), text);
+//                            db.updateTask(bundle.getInt("id"), text); //removing the "Edit" feature because the id changes on re-ordering
                         } else {
                             ToDoModel task = new ToDoModel();
                             task.setTask(text);

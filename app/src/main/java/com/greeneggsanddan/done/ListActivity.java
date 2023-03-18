@@ -42,8 +42,8 @@ public class ListActivity extends AppCompatActivity implements DialogCloseListen
 
         tasksRecyclerView = findViewById(R.id.tasksRecyclerView);
         tasksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        RecyclerViewMargin itemDecorator = new RecyclerViewMargin(-40);
-        tasksRecyclerView.addItemDecoration(itemDecorator);
+//        RecyclerViewMargin itemDecorator = new RecyclerViewMargin(-40);
+//        tasksRecyclerView.addItemDecoration(itemDecorator);
 
         tasksAdapter = new ToDoAdapter(db, this);
         tasksRecyclerView.setAdapter(tasksAdapter);
@@ -55,7 +55,6 @@ public class ListActivity extends AppCompatActivity implements DialogCloseListen
         itemTouchHelper.attachToRecyclerView(tasksRecyclerView);
 
         taskList = db.getAllTasks();
-        taskList.remove(taskList.size()-1); //removes final card
         tasksAdapter.setTasks(taskList);
 
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -77,20 +76,25 @@ public class ListActivity extends AppCompatActivity implements DialogCloseListen
     @Override
     public void handleDialogClose(DialogInterface dialog) {
         taskList = db.getAllTasks();
-        taskList.remove(taskList.size()-1); //removes final card
         tasksAdapter.setTasks(taskList);
         tasksAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    public void onDestroy() {
-        db.updateItemOrder(taskList);
-        super.onDestroy();
-    }
+//    @Override
+//    public void onDestroy() {
+//        db.updateDatabase(taskList);
+//        super.onDestroy();
+//    }
+//
+//    @Override
+//    public void onPause() {
+//        db.updateDatabase(taskList);
+//        super.onPause();
+//    }
 
-    @Override
-    public void onPause() {
-        db.updateItemOrder(taskList);
-        super.onPause();
-    }
+//    @Override
+//    public void onResume() {
+//        db.updateDatabase(taskList);
+//        super.onResume();
+//    }
 }
