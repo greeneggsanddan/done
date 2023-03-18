@@ -88,11 +88,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
     }
 
-//    public void updateTask(int id, String task) { //The id of the updated task changes on re-ordering
-//        ContentValues cv = new ContentValues();
-//        cv.put(TASK, task);
-//        db.update(TODO_TABLE, cv, ID + "= ?", new String[] {String.valueOf(id)});
-//    }
+    public void updateTask(int id, String task) {
+        ContentValues cv = new ContentValues();
+        cv.put(TASK, task);
+        db.update(TODO_TABLE, cv, ID + "= ?", new String[] {String.valueOf(id)});
+    }
 
     public void deleteTask(int id){
         db.delete(TODO_TABLE, ID + "= ?", new String[] {String.valueOf(id)});

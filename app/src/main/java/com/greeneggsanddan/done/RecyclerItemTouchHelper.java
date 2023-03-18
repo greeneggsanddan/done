@@ -62,9 +62,9 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.Callback {
             case ItemTouchHelper.RIGHT:
                 adapter.deleteItem(position);
                 break;
-//            case ItemTouchHelper.LEFT: //Removing editItem functionality
-//                adapter.editItem(position);
-//                break;
+            case ItemTouchHelper.LEFT:
+                adapter.editItem(position);
+                break;
         }
         isItemMoved = false;
     }
@@ -95,13 +95,13 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.Callback {
             icon.setBounds(iconLeft, iconTop, iconRight, iconBottom);
 
             background.setBounds(itemView.getLeft(), itemView.getTop(), itemView.getLeft() + ((int)dX) +backgroundCornerOffset, itemView.getBottom());
-//        } else if (dX < 0) { // Swiping to the left //removed editItem functionality
-//            int iconLeft = itemView.getRight() - iconMargin - icon.getIntrinsicWidth();
-//            int iconRight = itemView.getRight() - iconMargin;
-//            icon.setBounds(iconLeft, iconTop, iconRight, iconBottom);
-//
-//            background.setBounds(itemView.getRight() + ((int) dX) - backgroundCornerOffset,
-//                    itemView.getTop(), itemView.getRight(), itemView.getBottom());
+        } else if (dX < 0) { // Swiping to the left //removed editItem functionality
+            int iconLeft = itemView.getRight() - iconMargin - icon.getIntrinsicWidth();
+            int iconRight = itemView.getRight() - iconMargin;
+            icon.setBounds(iconLeft, iconTop, iconRight, iconBottom);
+
+            background.setBounds(itemView.getRight() + ((int) dX) - backgroundCornerOffset,
+                    itemView.getTop(), itemView.getRight(), itemView.getBottom());
         } else { // view is unSwiped
             background.setBounds(0, 0, 0, 0);
         }
