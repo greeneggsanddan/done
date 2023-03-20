@@ -50,7 +50,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
-        app:srcCompat="@drawable/baseline_menu"
+        app:srcCompat="@drawable/outline_task"
         android:background="@android:color/white" />
 
 </RelativeLayout>

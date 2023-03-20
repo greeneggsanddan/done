@@ -34,6 +34,6 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
         android:background="@android:color/white"
-        app:srcCompat="@drawable/baseline_menu" />
+        app:srcCompat="@drawable/outline_menu" />
 
 </RelativeLayout>
