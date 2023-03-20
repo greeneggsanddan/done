@@ -56,6 +56,17 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
         notifyItemRemoved(position);
     }
 
+    public void snoozeItem(int position) {
+        ToDoModel item = todoList.get(position);
+        db.deleteTask(item.getId());
+        db.insertTask(item);
+        todoList = db.getAllTasks();
+        ToDoModel lastTask = new ToDoModel();
+        lastTask.setTask("You are d.one");
+        todoList.add(lastTask);
+        notifyDataSetChanged();
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView task;

@@ -52,14 +52,16 @@ public class TaskActivity extends AppCompatActivity implements DialogCloseListen
         manager = new CardStackLayoutManager(this, new CardStackListener() {
             @Override
             public void onCardDragging(Direction direction, float ratio) {
-
             }
 
             @Override
             public void onCardSwiped(Direction direction) {
                 final int position = manager.getTopPosition() - 1;
-                if (direction == Direction.Right) {
+                if (direction == Direction.Right || direction == Direction.Left) {
                     adapter.deleteItem(position);
+                }
+                if (direction == Direction.Top || direction == Direction.Bottom) {
+                    adapter.snoozeItem(position);
                 }
             }
 
@@ -78,6 +80,9 @@ public class TaskActivity extends AppCompatActivity implements DialogCloseListen
                 if (adapter.getItemCount()==1) {
                     manager.setSwipeableMethod(SwipeableMethod.None);
                 }
+                if (adapter.getItemCount()==2) {
+                    manager.setDirections(Direction.HORIZONTAL);
+                }
             }
 
             @Override
@@ -87,6 +92,7 @@ public class TaskActivity extends AppCompatActivity implements DialogCloseListen
         });
         manager.setVisibleCount(2);
         manager.setScaleInterval(.95f);
+        manager.setDirections(Direction.FREEDOM);
         adapter = new CardStackAdapter(db, this);
         cardStackView.setLayoutManager(manager);
         cardStackView.setAdapter(adapter);
@@ -113,6 +119,7 @@ public class TaskActivity extends AppCompatActivity implements DialogCloseListen
             public void onClick(View v) {
                 AddNewTask.newInstance().show(getSupportFragmentManager(), AddNewTask.TAG);
                 manager.setSwipeableMethod(SwipeableMethod.Manual);
+                manager.setDirections(Direction.FREEDOM);
             }
         });
     }
