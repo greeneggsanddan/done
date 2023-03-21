@@ -25,7 +25,6 @@ public class ListActivity extends AppCompatActivity implements DialogCloseListen
     private ToDoAdapter tasksAdapter;
     private ImageButton addButton;
     private ImageButton toTaskButton;
-
     private List<ToDoModel> taskList;
     private DatabaseHandler db;
 
@@ -42,8 +41,6 @@ public class ListActivity extends AppCompatActivity implements DialogCloseListen
 
         tasksRecyclerView = findViewById(R.id.tasksRecyclerView);
         tasksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        RecyclerViewMargin itemDecorator = new RecyclerViewMargin(-40);
-//        tasksRecyclerView.addItemDecoration(itemDecorator);
 
         tasksAdapter = new ToDoAdapter(db, this);
         tasksRecyclerView.setAdapter(tasksAdapter);
@@ -81,20 +78,11 @@ public class ListActivity extends AppCompatActivity implements DialogCloseListen
         tasksAdapter.notifyDataSetChanged();
     }
 
-//    @Override
-//    public void onDestroy() {
-//        db.updateDatabase(taskList);
-//        super.onDestroy();
-//    }
-//
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//    }
-
-//    @Override
-//    public void onResume() {
-//        db.updateDatabase(taskList);
-//        super.onResume();
-//    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        taskList = db.getAllTasks();
+        tasksAdapter.setTasks(taskList);
+        tasksAdapter.notifyDataSetChanged();
+    }
 }

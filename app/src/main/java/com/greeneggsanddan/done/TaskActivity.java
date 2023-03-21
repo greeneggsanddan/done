@@ -144,21 +144,13 @@ public class TaskActivity extends AppCompatActivity implements DialogCloseListen
         }
     }
 
-//    @Override
-//    public void onDestroy() { //Adds the final card to the database when you don't want it to
-//        db.updateDatabase(taskList);
-//        super.onDestroy();
-//    }
-//
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//    }
-
-//    @Override
-//    public void onResume() {
-//        db.updateDatabase(taskList);
-//        super.onResume();
-//    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        taskList = db.getAllTasks();
+        addLastTask(taskList);
+        adapter.setTasks(taskList);
+        adapter.notifyDataSetChanged();
+    }
 
 }
