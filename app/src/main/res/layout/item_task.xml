@@ -26,18 +26,4 @@
 
     </RelativeLayout>
 
-<!--    <FrameLayout-->
-<!--        android:id="@+id/left_overlay"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:background="@drawable/overlay_black">-->
-<!--    </FrameLayout>-->
-
-<!--    <FrameLayout-->
-<!--        android:id="@+id/right_overlay"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:background="@drawable/overlay_black">-->
-<!--    </FrameLayout>-->
-
 </androidx.cardview.widget.CardView>
