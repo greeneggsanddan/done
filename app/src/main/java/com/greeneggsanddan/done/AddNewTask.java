@@ -70,6 +70,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
             isUpdate = true;
             String task = bundle.getString("task");
             newTaskText.setText(task);
+            newTaskText.selectAll();
         }
         newTaskText.addTextChangedListener(new TextWatcher() {
             @Override
