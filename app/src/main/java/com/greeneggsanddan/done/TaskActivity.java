@@ -59,9 +59,12 @@ public class TaskActivity extends AppCompatActivity implements DialogCloseListen
                 final int position = manager.getTopPosition() - 1;
                 if (direction == Direction.Right || direction == Direction.Left) {
                     adapter.deleteItem(position);
+                    Toast.makeText(TaskActivity.this, "Task completed", Toast.LENGTH_SHORT).show();
+
                 }
                 if (direction == Direction.Top || direction == Direction.Bottom) {
                     adapter.snoozeItem(position);
+                    Toast.makeText(TaskActivity.this, "Task snoozed", Toast.LENGTH_SHORT).show();
                 }
             }
 
