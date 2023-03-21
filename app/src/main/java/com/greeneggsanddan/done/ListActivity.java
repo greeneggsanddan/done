@@ -62,7 +62,7 @@ public class ListActivity extends AppCompatActivity implements DialogCloseListen
             public void onClick(View v) {
                 Intent myInt = new Intent(getApplicationContext(), TaskActivity.class);
                 startActivity(myInt);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                overridePendingTransition(0,0);
             }
         });
     }
