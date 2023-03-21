@@ -1,13 +1,10 @@
 package com.greeneggsanddan.done;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -16,8 +13,6 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.greeneggsanddan.done.Adapter.ToDoAdapter;
-
-import java.util.Collections;
 
 public class RecyclerItemTouchHelper extends ItemTouchHelper.Callback {
 

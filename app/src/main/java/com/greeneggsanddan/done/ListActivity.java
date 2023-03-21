@@ -14,18 +14,14 @@ import android.widget.ImageButton;
 import com.greeneggsanddan.done.Adapter.ToDoAdapter;
 import com.greeneggsanddan.done.Model.ToDoModel;
 import com.greeneggsanddan.done.Utils.DatabaseHandler;
-import com.greeneggsanddan.done.Utils.RecyclerViewMargin;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListActivity extends AppCompatActivity implements DialogCloseListener {
 
-    private RecyclerView tasksRecyclerView;
-    private ToDoAdapter tasksAdapter;
-    private ImageButton addButton;
-    private ImageButton toTaskButton;
-    private List<ToDoModel> taskList;
+    private ToDoAdapter adapter;
+    private List<ToDoModel> todoList;
     private DatabaseHandler db;
 
     @Override
@@ -37,22 +33,22 @@ public class ListActivity extends AppCompatActivity implements DialogCloseListen
         db = new DatabaseHandler(this);
         db.openDatabase();
 
-        taskList = new ArrayList<>();
+        todoList = new ArrayList<>();
 
-        tasksRecyclerView = findViewById(R.id.tasksRecyclerView);
+        RecyclerView tasksRecyclerView = findViewById(R.id.tasksRecyclerView);
         tasksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        tasksAdapter = new ToDoAdapter(db, this);
-        tasksRecyclerView.setAdapter(tasksAdapter);
+        adapter = new ToDoAdapter(db, this);
+        tasksRecyclerView.setAdapter(adapter);
 
-        addButton = findViewById(R.id.addButton);
-        toTaskButton = findViewById(R.id.toTaskButton);
+        ImageButton addButton = findViewById(R.id.addButton);
+        ImageButton toTaskButton = findViewById(R.id.toTaskButton);
 
-        ItemTouchHelper itemTouchHelper =  new ItemTouchHelper(new RecyclerItemTouchHelper(tasksAdapter));
+        ItemTouchHelper itemTouchHelper =  new ItemTouchHelper(new RecyclerItemTouchHelper(adapter));
         itemTouchHelper.attachToRecyclerView(tasksRecyclerView);
 
-        taskList = db.getAllTasks();
-        tasksAdapter.setTasks(taskList);
+        todoList = db.getAllTasks();
+        adapter.setTasks(todoList);
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,16 +69,16 @@ public class ListActivity extends AppCompatActivity implements DialogCloseListen
 
     @Override
     public void handleDialogClose(DialogInterface dialog) {
-        taskList = db.getAllTasks();
-        tasksAdapter.setTasks(taskList);
-        tasksAdapter.notifyDataSetChanged();
+        todoList = db.getAllTasks();
+        adapter.setTasks(todoList);
+        adapter.notifyDataSetChanged();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        taskList = db.getAllTasks();
-        tasksAdapter.setTasks(taskList);
-        tasksAdapter.notifyDataSetChanged();
+        todoList = db.getAllTasks();
+        adapter.setTasks(todoList);
+        adapter.notifyDataSetChanged();
     }
 }

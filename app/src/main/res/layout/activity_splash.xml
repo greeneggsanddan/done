@@ -7,10 +7,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
         android:fontFamily="@font/inter_bold"
+        android:gravity="center"
         android:text="@string/splash_text"
-        android:textSize="72dp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:textSize="72dp" />
 
 </RelativeLayout>

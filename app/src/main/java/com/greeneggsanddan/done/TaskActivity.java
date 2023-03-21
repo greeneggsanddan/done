@@ -1,16 +1,11 @@
 package com.greeneggsanddan.done;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -31,11 +26,8 @@ public class TaskActivity extends AppCompatActivity implements DialogCloseListen
     private CardStackAdapter adapter;
     private DatabaseHandler db;
     private CardStackLayoutManager manager;
-    private CardStackView cardStackView;
-    private List<ToDoModel> taskList;
-    private ImageButton toMenuButton;
-    private ImageButton addButton;
-    private List<ToDoModel> previousTaskList;
+    private List<ToDoModel> todoList;
+    private List<ToDoModel> previousTodoList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +38,9 @@ public class TaskActivity extends AppCompatActivity implements DialogCloseListen
         db = new DatabaseHandler(this);
         db.openDatabase();
 
-        taskList = new ArrayList<>();
+        todoList = new ArrayList<>();
 
-        cardStackView = findViewById(R.id.card_stack_view);
+        CardStackView cardStackView = findViewById(R.id.card_stack_view);
         manager = new CardStackLayoutManager(this, new CardStackListener() {
             @Override
             public void onCardDragging(Direction direction, float ratio) {
@@ -100,13 +92,13 @@ public class TaskActivity extends AppCompatActivity implements DialogCloseListen
         cardStackView.setLayoutManager(manager);
         cardStackView.setAdapter(adapter);
         cardStackView.setItemAnimator(new DefaultItemAnimator());
-        toMenuButton = findViewById(R.id.toMenuButton);
-        addButton = findViewById(R.id.addButton);
+        ImageButton toMenuButton = findViewById(R.id.toMenuButton);
+        ImageButton addButton = findViewById(R.id.addButton);
 
-        taskList = db.getAllTasks();
-        addLastTask(taskList);
-        previousTaskList = taskList;
-        adapter.setTasks(taskList);
+        todoList = db.getAllTasks();
+        addLastTask(todoList);
+        previousTodoList = todoList;
+        adapter.setTasks(todoList);
 
         toMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,22 +126,22 @@ public class TaskActivity extends AppCompatActivity implements DialogCloseListen
 
     @Override
     public void handleDialogClose(DialogInterface dialog) {
-        taskList = db.getAllTasks();
-        addLastTask(taskList);
-        adapter.setTasks(taskList);
+        todoList = db.getAllTasks();
+        addLastTask(todoList);
+        adapter.setTasks(todoList);
         adapter.notifyDataSetChanged();
-        if (taskList.size() != previousTaskList.size()) { //Checks to see if a task was added. This will need to be updated for re-ordered tasks and back button activity
+        if (todoList.size() != previousTodoList.size()) { //Checks to see if a task was added. This will need to be updated for re-ordered tasks and back button activity
             Toast.makeText(TaskActivity.this, "Task added", Toast.LENGTH_SHORT).show();
-            previousTaskList = taskList;
+            previousTodoList = todoList;
         }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        taskList = db.getAllTasks();
-        addLastTask(taskList);
-        adapter.setTasks(taskList);
+        todoList = db.getAllTasks();
+        addLastTask(todoList);
+        adapter.setTasks(todoList);
         adapter.notifyDataSetChanged();
     }
 

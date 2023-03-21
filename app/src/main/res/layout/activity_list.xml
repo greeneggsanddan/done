@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/tasksText"
@@ -22,17 +22,16 @@
         android:layout_height="match_parent"
         android:layout_below="@id/tasksText"
         android:layout_marginBottom="120dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:nestedScrollingEnabled="true"
         android:overScrollMode="never"
-        />
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:background="@color/white"
         android:layout_alignParentBottom="true"
-        android:elevation="16dp" >
+        android:background="@color/white"
+        android:elevation="16dp">
 
         <ImageButton
             android:id="@+id/addButton"
@@ -41,8 +40,8 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_margin="32dp"
-            app:srcCompat="@drawable/outline_add"
-            android:background="@null" />
+            android:background="@null"
+            app:srcCompat="@drawable/outline_add" />
 
         <ImageButton
             android:id="@+id/toTaskButton"
@@ -51,8 +50,8 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
             android:layout_margin="32dp"
-            app:srcCompat="@drawable/outline_task"
-            android:background="@null" />
+            android:background="@null"
+            app:srcCompat="@drawable/outline_task" />
 
     </RelativeLayout>
 

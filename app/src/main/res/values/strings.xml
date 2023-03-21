@@ -3,4 +3,5 @@
     <string name="last_card">You\'re d.one</string>
     <string name="list_header">Tasks</string>
     <string name="splash_text">d.one</string>
+    <string name="hint_text">Add a task</string>
 </resources>
