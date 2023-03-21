@@ -27,30 +27,33 @@
         android:overScrollMode="never"
         />
 
-    <ImageButton
-        android:id="@+id/addButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@color/white"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
-        app:srcCompat="@drawable/outline_add"
-        android:background="@null" />
+        android:elevation="16dp" >
 
-    <ImageButton
-        android:id="@+id/toTaskButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
-        app:srcCompat="@drawable/outline_task"
-        android:background="@null" />
+        <ImageButton
+            android:id="@+id/addButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="32dp"
+            app:srcCompat="@drawable/outline_add"
+            android:background="@null" />
+
+        <ImageButton
+            android:id="@+id/toTaskButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="32dp"
+            app:srcCompat="@drawable/outline_task"
+            android:background="@null" />
+
+    </RelativeLayout>
 
 </RelativeLayout>
