@@ -105,7 +105,7 @@ public class TaskActivity extends AppCompatActivity implements DialogCloseListen
             public void onClick(View v) {
                 Intent myInt = new Intent(getApplicationContext(), ListActivity.class);
                 startActivity(myInt);
-                overridePendingTransition(0, 0);
+                overridePendingTransition(R.anim.bounce_in, R.anim.bounce_out);
             }
         });
 
@@ -138,11 +138,11 @@ public class TaskActivity extends AppCompatActivity implements DialogCloseListen
 
     @Override
     public void onResume() {
-        super.onResume();
         todoList = db.getAllTasks();
         addLastTask(todoList);
         adapter.setTasks(todoList);
         adapter.notifyDataSetChanged();
+        super.onResume();
     }
 
 }
